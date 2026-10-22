@@ -1,0 +1,67 @@
+============================================================
+DATA QUALITY REPORT
+============================================================
+Original rows: 15,015
+Original columns: 20
+Final rows: 14,970
+Final columns: 26
+Total rows removed: 45 (0.3%)
+
+CLEANING STEPS:
+----------------------------------------
+  1. Standardize column names
+     rows_after: 15015
+  2. Remove exact duplicate rows
+     duplicates_removed: 15
+     rows_after: 15000
+  3. Remove rows with invalid/missing dates
+     rows_removed: 20
+     rows_after: 14980
+     details: {'nat_count': 0, 'out_of_range_count': 20, 'date_range': '1900-01-15 00:00:00 to 2099-07-20 00:00:00', 'out_of_range_years': [1900, 2099]}
+  4. Remove rows with negative/zero quantities (data errors)
+     negative_removed: 10
+     zero_removed: 0
+     rows_after: 14970
+  5. Fill missing discount_percent with 0 (assume no discount)
+     filled_count: 300
+  6. Fill missing payment_method with 'Unknown'
+     filled_count: 299
+  7. Fill missing customer_name with 'Unknown'
+     filled_count: 299
+  8. Fill missing city with 'Unknown'
+     filled_count: 300
+  9. Recalculated sales_amount = qty * price * (1 - disc/100)
+  10. Derived year, month, quarter, month_name, year_month columns
+
+REMAINING MISSING VALUES (cleaned data):
+----------------------------------------
+  return_reason: 13743 (91.8%)
+
+CLEANED DATA TYPES:
+----------------------------------------
+  order_id: str
+  order_date: datetime64[us]
+  customer_id: str
+  customer_name: str
+  customer_segment: str
+  product_id: str
+  product_name: str
+  category: str
+  sub_category: str
+  quantity: int64
+  unit_price: float64
+  discount_percent: float64
+  sales_amount: float64
+  profit: float64
+  shipping_cost: float64
+  payment_method: str
+  state: str
+  city: str
+  order_status: str
+  return_reason: str
+  year: int32
+  month: int32
+  quarter: int32
+  month_name: str
+  year_month: str
+  revenue: float64
